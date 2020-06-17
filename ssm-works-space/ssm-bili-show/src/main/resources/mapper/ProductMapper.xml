@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.loumt.dao.IProductDao" >
+    <resultMap id="productMap" type="cn.loumt.domain.Product">
+        <id property="id" column="id" jdbcType="BIGINT"></id>
+        <result column="product_num" property="productNum" jdbcType="VARCHAR" />
+        <result column="product_name" property="productName" jdbcType="VARCHAR" />
+        <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+        <result column="product_desc" property="productDesc" jdbcType="VARCHAR" />
+        <result column="departure_time" property="departureTime" jdbcType="TIMESTAMP"/>
+        <result column="product_status" property="productStatus" jdbcType="INTEGER" />
+        <result column="product_price" property="productPrice" jdbcType="DOUBLE" />
+    </resultMap>
+
+    <sql id="product_column_list" >
+        `id`, `product_num`, `product_name`, `city_name`,`product_desc`, `departure_time`, `product_status`, `product_price`
+    </sql>
+
+    <select id="findAll" resultMap="productMap">
+        select
+        <include refid="product_column_list"></include>
+        from product
+    </select>
+</mapper>
